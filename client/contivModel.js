@@ -760,6 +760,136 @@ var TenantModalView = React.createClass({
 
 module.exports.TenantSummaryView = TenantSummaryView
 module.exports.TenantModalView = TenantModalView
+var VnfSummaryView = React.createClass({
+  	render: function() {
+		var self = this
+
+		// Walk thru all objects
+		var vnfListView = self.props.vnfs.map(function(vnf){
+			return (
+				<ModalTrigger modal={<VnfModalView vnf={ vnf }/>}>
+					<tr key={ vnf.key } className="info">
+						
+						       
+					</tr>
+				</ModalTrigger>
+			);
+		});
+
+		return (
+        <div>
+			<Table hover>
+				<thead>
+					<tr>
+					
+					       
+					</tr>
+				</thead>
+				<tbody>
+            		{ vnfListView }
+				</tbody>
+			</Table>
+        </div>
+    	);
+	}
+});
+
+var VnfModalView = React.createClass({
+	render() {
+		var obj = this.props.vnf
+	    return (
+	      <Modal {...this.props} bsStyle='primary' bsSize='large' title='Vnf' animation={false}>
+	        <div className='modal-body' style={ {margin: '5%',} }>
+			
+			
+				<Input type='text' label='Encapsulation' ref='encap' defaultValue={obj.encap} placeholder='Encapsulation' />
+			
+				<Input type='text' label='Tenant Name' ref='tenantName' defaultValue={obj.tenantName} placeholder='Tenant Name' />
+			
+				<Input type='text' label='Traffic action to take' ref='trafficAction' defaultValue={obj.trafficAction} placeholder='Traffic action to take' />
+			
+				<Input type='text' label='Labels identifying VNFs (key=value pair)' ref='vnfLabels' defaultValue={obj.vnfLabels} placeholder='Labels identifying VNFs (key=value pair)' />
+			
+				<Input type='text' label='Virtual network function name' ref='vnfName' defaultValue={obj.vnfName} placeholder='Virtual network function name' />
+			
+				<Input type='text' label='Type of VNF' ref='vnfType' defaultValue={obj.vnfType} placeholder='Type of VNF' />
+			
+				<Input type='text' label='VTEP IP of VNF' ref='vtepIP' defaultValue={obj.vtepIP} placeholder='VTEP IP of VNF' />
+			
+			</div>
+	        <div className='modal-footer'>
+				<Button onClick={this.props.onRequestHide}>Close</Button>
+	        </div>
+	      </Modal>
+	    );
+  	}
+});
+
+module.exports.VnfSummaryView = VnfSummaryView
+module.exports.VnfModalView = VnfModalView
+var VnfPolicySummaryView = React.createClass({
+  	render: function() {
+		var self = this
+
+		// Walk thru all objects
+		var vnfPolicyListView = self.props.vnfPolicys.map(function(vnfPolicy){
+			return (
+				<ModalTrigger modal={<VnfPolicyModalView vnfPolicy={ vnfPolicy }/>}>
+					<tr key={ vnfPolicy.key } className="info">
+						
+						     
+					</tr>
+				</ModalTrigger>
+			);
+		});
+
+		return (
+        <div>
+			<Table hover>
+				<thead>
+					<tr>
+					
+					     
+					</tr>
+				</thead>
+				<tbody>
+            		{ vnfPolicyListView }
+				</tbody>
+			</Table>
+        </div>
+    	);
+	}
+});
+
+var VnfPolicyModalView = React.createClass({
+	render() {
+		var obj = this.props.vnfPolicy
+	    return (
+	      <Modal {...this.props} bsStyle='primary' bsSize='large' title='VnfPolicy' animation={false}>
+	        <div className='modal-body' style={ {margin: '5%',} }>
+			
+			
+				<Input type='text' label='Destination unit' ref='destUnit' defaultValue={obj.destUnit} placeholder='Destination unit' />
+			
+				<Input type='text' label='Source Unit' ref='sourceUnit' defaultValue={obj.sourceUnit} placeholder='Source Unit' />
+			
+				<Input type='text' label='Tenant Name' ref='tenantName' defaultValue={obj.tenantName} placeholder='Tenant Name' />
+			
+				<Input type='text' label='VNF to insert' ref='vnf' defaultValue={obj.vnf} placeholder='VNF to insert' />
+			
+				<Input type='text' label='VNF policy name' ref='vnfPolicyName' defaultValue={obj.vnfPolicyName} placeholder='VNF policy name' />
+			
+			</div>
+	        <div className='modal-footer'>
+				<Button onClick={this.props.onRequestHide}>Close</Button>
+	        </div>
+	      </Modal>
+	    );
+  	}
+});
+
+module.exports.VnfPolicySummaryView = VnfPolicySummaryView
+module.exports.VnfPolicyModalView = VnfPolicyModalView
 var VolumeSummaryView = React.createClass({
   	render: function() {
 		var self = this
